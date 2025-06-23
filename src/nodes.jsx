@@ -1,14 +1,54 @@
-import React from 'react';
+import React from "react";
 export const defaultNodes = [
-  { id: '1',type:"input", position: { x: 250, y: 0 }, data: { label: 'Giriş' },
-style: { backgroundColor: '#6ede87', color: 'white' }, },
-  { id: '2',type:"textUpdater", position: { x: 0, y: 100 }, data: { label: 'Orta',value:123 }, style: { backgroundColor: '#ff0072', color: 'white' }, },
-    {
-    id: '3',
-    type: 'output',
-    data: { label: <h2>Çıkış</h2> },
-    position: { x: 250, y: 250 }, style: { backgroundColor: '#6865A5', color: 'white' },
+  {
+    id: "1",
+    type: "input",
+    position: { x: 250, y: 0 },
+    data: { label: "Giriş" },
+    style: { backgroundColor: "#6ede87", color: "white" },
   },
-   { id: 'c', position: { x: 0, y: 200 }, data: { label: 'Node C' } },
-  { id: 'd', position: { x: 200, y: 400 }, data: { label: 'Node D' } },
+  {
+    id: "2",
+    type: "textUpdater",
+    position: { x: 0, y: 100 },
+    data: { label: "Orta", value: 123 },
+    style: { backgroundColor: "#ff0072", color: "white" },
+  },
+  {
+    id: "3",
+    type: "output",
+    data: { label: <h2>Çıkış</h2> },
+    position: { x: 250, y: 250 },
+    style: { backgroundColor: "#6865A5", color: "white" },
+  },
+  { id: "c", position: { x: 0, y: 200 }, data: { label: "Node C" } },
+  { id: "d", position: { x: 200, y: 400 }, data: { label: "Node D" } },
+  {
+    id: "group",
+    type: "group",
+    position: { x: 350, y: 100 },
+    data: { label: null },
+    style: {
+      width: 170,
+      height: 140,
+
+      color: "white",
+    },
+  },
+  {
+    id: "groupa",
+    type: "input",
+    position: { x: 10, y: 10 },
+    data: { label: "Child Node 1" },
+    parentId: "group",
+    extend: "parent",
+  },
+  {
+    id: "groupb",
+    type: "output",
+    position: { x: 10, y: 90 },
+    data: { label: "Child Node 2" },
+    parentId: "group",
+    extend: "parent",
+  },
 ];
