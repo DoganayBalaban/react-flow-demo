@@ -15,6 +15,7 @@ import { defaultEdges } from "./edges";
 import TextUpdaterNode from "./TextUpdaterNode";
 import CustomEdge from "./CustomEdge";
 import SineEdge from "./SineEdge";
+import axios from "axios";
 const nodeColorMap = (node) => {
   switch (node.type) {
     case "input":
@@ -47,9 +48,26 @@ export default function App() {
     () => ({ customEdge: CustomEdge, sineEdge: SineEdge }),
     []
   );
+  const sendToWebhook = () => {
+    axios
+      .post(
+        "https://doganaydev.app.n8n.cloud/webhook-test/e9a84f47-14b0-4d9c-b8b3-7964b4ae0c5e",
+        {
+          name: "Doganay",
+          time: new Date().toISOString(),
+        }
+      )
+      .then(() => {
+        console.log("başarılı");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     // ReactFlow mutlaka w ve h içeren bir kapsayıcıyla çalışmalı
     <div style={{ width: "100vw", height: "100vh" }}>
+      <button onClick={sendToWebhook}>Send to Webhook</button>
       <ReactFlow
         colorMode="dark"
         edgeTypes={edgeTypes}
