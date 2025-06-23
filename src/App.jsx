@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import '@xyflow/react/dist/style.css';
 import { ReactFlow, useNodesState , useEdgesState, addEdge, MiniMap, Controls, Background, Panel } from '@xyflow/react';
 import { defaultNodes } from './nodes';
 import { defaultEdges } from './edges';
+import {TextUpdaterNode} from "./TextUpdaterNode"
 
  const nodeColorMap = (node) =>{
   switch (node.type){
@@ -15,6 +16,7 @@ import { defaultEdges } from './edges';
 
   }
  }
+ 
 
 
 export default function App() {
@@ -33,10 +35,11 @@ export default function App() {
   //   (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
   //   [setEdges],
   // );
+  const nodeTypes = useMemo(() => ({ textUpdater: TextUpdaterNode }), []);
   return (
      // ReactFlow mutlaka w ve h içeren bir kapsayıcıyla çalışmalı
     <div style={{ width: '100vw', height: '100vh' }}>
-      <ReactFlow defaultNodes={defaultNodes} defaultEdges={defaultEdges}  fitView >
+      <ReactFlow defaultNodes={defaultNodes} defaultEdges={defaultEdges} nodeTypes={nodeTypes}  fitView >
         <Controls/>
         <MiniMap nodeColor={nodeColorMap} nodeStrokeWidth={3} zoomable pannable/>
         <Background variant= {variant} gap={12} size={1}/>
